@@ -1,8 +1,8 @@
 import { createSlice, createEntityAdapter, createSelector, nanoid } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store/store";
-import { formatDateString, TODO, DOING, DONE, ARCHIVED } from "../../modules/modules";
-import { TaskI } from "../../modules/modules";
+import { formatDateString, TODO, DONE } from "../../modules/modules";
+import { TaskI, ChangeTaskStatusPayloadI } from "../../modules/modules";
 
 
 const tasksAdapter = createEntityAdapter();
@@ -13,7 +13,7 @@ const tasksSlice = createSlice({
     name: 'tasks',
     initialState,
     reducers: {
-        addTask: {
+        addTaskAction: {
             reducer: (state, action: PayloadAction<TaskI>) => tasksAdapter.addOne(state, action.payload),
             prepare: (title: string, content: string, owner: string, assignee: string, dueDate: string) => {
                 return {
@@ -30,11 +30,20 @@ const tasksSlice = createSlice({
                     }
                 }
             }
+        },
+        changeStatusAction: (state, action: PayloadAction<ChangeTaskStatusPayloadI>) => {
+            (state.entities[action.payload.taskId] as TaskI).status = action.payload.status;
+            if(action.payload.status === DONE) {
+                (state.entities[action.payload.taskId] as TaskI).completedDate = formatDateString(new Date());
+            }
+        },
+        deleteTaskAction: (state, action) => {
+            tasksAdapter.removeOne(state, action.payload);
         }
     }
 });
 
-export const { addTask } = tasksSlice.actions
+export const { addTaskAction, changeStatusAction, deleteTaskAction } = tasksSlice.actions
 
 export const {
     selectAll: selectAllTasks,

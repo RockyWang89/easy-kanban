@@ -1,7 +1,7 @@
-export const TODO = "to do";
-export const DOING = "doing";
-export const DONE = "done";
-export const ARCHIVED = "archived";
+export const TODO = "To do";
+export const DOING = "Doing";
+export const DONE = "Done";
+export const ARCHIVED = "Archived";
 
 export interface TaskI {
     id: string;
@@ -34,6 +34,11 @@ export interface TaskCardPropsI {
         status: string
     },
     class: string
+}
+
+export interface ChangeTaskStatusPayloadI {
+    taskId: string;
+    status: string;
 }
 
 export function formatDateString(date: Date): string {

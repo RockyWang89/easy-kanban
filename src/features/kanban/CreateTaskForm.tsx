@@ -2,9 +2,8 @@ import { useState, ChangeEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCurrentUser, selectAllUsers } from "../user/usersSlice";
-import { addTask } from "./tasksSlice";
+import { addTaskAction } from "./tasksSlice";
 import { formatDateString } from "../../modules/modules";
-import { RootState } from "../../store/store";
 
 function CreateTaskForm() {
     const navigate = useNavigate();
@@ -25,7 +24,7 @@ function CreateTaskForm() {
     const isValid = title && content && assignee && dueDate;
 
     function handleSubmit() {
-        dispatch(addTask(title, content, owner, assignee, dueDate));
+        dispatch(addTaskAction(title, content, owner, assignee, dueDate));
         navigate("/kanban")
     }
 
