@@ -26,7 +26,6 @@ function Login() {
     }
 
     function login() {
-        console.log(userId+', '+password);
         dispatch(loginAction({userId, password}));
     }
 

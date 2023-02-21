@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import tasksReducer from '../features/kanban/tasksSlice';
-import createTaskFormReducer from "../features/kanban/createTaskFormSlice";
 import usersReducer from '../features/user/usersSlice';
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -21,7 +20,6 @@ const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);
 
 const rootReducer = combineReducers({
     tasks: tasksReducer,
-    createTaskForm: createTaskFormReducer,
     users: persistedUsersReducer
 })
 

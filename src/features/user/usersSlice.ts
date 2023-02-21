@@ -1,11 +1,6 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { RootState } from "../../store/store";
-
-interface UserI {
-    id: string;
-    name: string;
-    password: string
-}
+import { UserI } from "../../modules/modules";
 
 const usersAdapter = createEntityAdapter<UserI>();
 
