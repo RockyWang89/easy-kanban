@@ -45,7 +45,7 @@ function TaskCard(props: TaskCardPropsI) {
     }
 
     function moveTo(status: string) {
-        dispatch(changeStatusAction({taskId:id, status}))
+        dispatch(changeStatusAction({id, status}))
     }
 
     function goToEdit() {

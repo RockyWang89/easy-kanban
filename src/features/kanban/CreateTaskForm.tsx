@@ -38,7 +38,7 @@ function CreateTaskForm() {
                 <textarea id="content" value={content} onChange={handleContentChange}></textarea>
                 <label htmlFor="assignee">Assignee</label>
                 <select id="assignee" value={assignee} onChange={handleAssigneeChange}>
-                    <option value="">--Please select an assignee</option>
+                    <option value="">-Please select an assignee-</option>
                     {userOptions.map(user => <option key={user.id} value={user.id}>{user.id} - {user.name}</option>)}
                 </select>
                 <label htmlFor="due-date">Due Date</label>
@@ -49,7 +49,7 @@ function CreateTaskForm() {
                         handleSubmit();
                     }}
                     disabled={!isValid}
-                >Create</button>
+                >Submit</button>
             </form>
         </div>
     );

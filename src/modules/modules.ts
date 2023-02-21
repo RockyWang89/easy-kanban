@@ -37,8 +37,18 @@ export interface TaskCardPropsI {
 }
 
 export interface ChangeTaskStatusPayloadI {
-    taskId: string;
+    id: string;
     status: string;
+}
+
+export interface UpdateTaskPayloadI {
+    id: string;
+    changes: {
+        title: string;
+        content: string;
+        assignee: string;
+        dueDate: string;
+    }
 }
 
 export function formatDateString(date: Date): string {
