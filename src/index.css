@@ -8,6 +8,68 @@ body, h1, h2, h3, h4, h5, h6, a, p, span, li, ul, div {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*Home style*/ 
+.header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.account-section {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  flex-grow: 1;
+}
+
+.account-section button {
+  margin: 10px 27px 10px 16px;
+  border: 1px solid #1976d2;
+  line-height: 1.25;
+  background-color: #1976d2;
+  color: white;  
+}
+
+.account-section button:hover {
+  color: #1976d2;
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+    text-align: center;
+  }
+}
+
+/*Kanban style*/
+.operations-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.operations-wrapper button {
+  margin: 16px;
+  border: 1px solid #1976d2;
+  line-height: 1.25;
+  background-color: #1976d2;
+  color: white;
+}
+
+.operations-wrapper button:hover {
+  color: #1976d2;
+}
+
+/*Navbar style*/
+.navbar a{
+  width: 25%;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
 
 /*TaskCard style*/
 .task-card {
@@ -27,8 +89,7 @@ body, h1, h2, h3, h4, h5, h6, a, p, span, li, ul, div {
 }
 
 .task-card h2 {
-  margin-bottom: 13px;
-  margin-top: 10px;
+  margin-top: 18px;
 }
 
 .action-btn {
@@ -72,4 +133,91 @@ body, h1, h2, h3, h4, h5, h6, a, p, span, li, ul, div {
 
 .task-card-content {
   text-align: justify;
+}
+
+/*Login style*/
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30vh;
+}
+
+.login-wrapper h1 {
+  margin-bottom: 3px;
+}
+
+.login-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-wrapper button {
+  margin: 10px;
+  width: 65px;
+  border: 1px solid #1976d2;
+  line-height: 1.25;
+  background-color: #1976d2;
+  color: white;
+}
+
+.login-wrapper button:hover {
+  color: #1976d2;
+}
+
+/*CreateTaskForm and EditTaskForm style*/
+.task-form {
+  margin: 10vh auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+.task-form>h2 {
+  text-align: center;
+  width: 100%;
+}
+
+.task-form>form {
+  margin: 0 10px;
+}
+
+.input-wrapper {
+  width: 100%;
+  margin: 18px 0;
+}
+
+.btn-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.btn-wrapper button {
+  border: 1px solid #1976d2;
+  line-height: 1.25;
+  background-color: #1976d2;
+  color: white;
+  width: 100px;
+  margin: 8px 13px;
+}
+
+.btn-wrapper button:hover {
+  color: #1976d2;
+}
+
+.btn-wrapper button:disabled {
+  border: 1px solid #a3a3a3;
+  line-height: 1.25;
+  background-color: #a3a3a3;
+  color: white;
+}
+
+.left-btn-wrapper {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.right-btn-wrapper {
+  flex-grow: 1;
+  text-align: right;
 }

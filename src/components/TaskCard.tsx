@@ -4,9 +4,10 @@ import { TODO, DOING, DONE, ARCHIVED } from "../modules/modules"
 import { useSelector, useDispatch } from "react-redux";
 import { changeStatusAction, deleteTaskAction } from "../features/kanban/tasksSlice";
 import { selectUserById } from "../features/user/usersSlice";
-import { TaskCardPropsI } from "../modules/modules";
+import { TaskCardPropsI, formatDateString } from "../modules/modules";
 import { RootState } from "../store/store";
 
+//material design components
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -26,6 +27,7 @@ function TaskCard(props: TaskCardPropsI) {
     const ownerName = useSelector((state: RootState) => selectUserById(state, owner))?.name;
     const assigneeName = useSelector((state: RootState) => selectUserById(state, assignee))?.name;
 
+    //material design components essential states and functions
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [openAlert, setOpenAlert] = useState(false);
     const openMenu = Boolean(anchorEl);
@@ -35,29 +37,34 @@ function TaskCard(props: TaskCardPropsI) {
     const handleMenuClose = () => {
         setAnchorEl(null);
     };
-
     const handleAlertClose = () => {
         setOpenAlert(false);
-    }
-
+    };
     const handleAlertOpen = () => {
         setOpenAlert(true);
-    }
+    };
 
+    //change the status of task
     function moveTo(status: string) {
-        dispatch(changeStatusAction({id, status}))
-    }
+        dispatch(changeStatusAction({id, status}));
+    };
 
     function goToEdit() {
-        navigate(`/kanban/edit-task/${id}`)
-    }
+        navigate(`/kanban/edit-task/${id}`);
+    };
 
     function deleteTask() {
         dispatch(deleteTaskAction(id));
+    };
+
+    //compare the current date with task due date to see if the task is overdue
+    function isOverDue(dDate: string): boolean {
+        const today = formatDateString(new Date());
+        return today.localeCompare(dDate)>0?true:false;
     }
 
     return (
-        <div className="task-card">
+        <div className="task-card" style={((props.class === TODO || props.class === DOING) && isOverDue(props.task.dueDate))?{backgroundColor: "#fa8a82"}:undefined}>
             <div>
                 <h2 className="task-card-span-1">{title}</h2>
                 <div className="task-card-span-1 right-align action-btn">
@@ -79,7 +86,8 @@ function TaskCard(props: TaskCardPropsI) {
                         'aria-labelledby': 'basic-button',
                         }}
                     >
-                        {statusList.filter(item => item !== props.class).map(item => <MenuItem id={item} onClick={()=>moveTo(item)}>{item===ARCHIVED?"Archive":item}</MenuItem>)}
+                        {/* create menu items: create the button for changing the current status to another, so filter the current one out first */}
+                        {statusList.filter(item => item !== props.class).map(item => <MenuItem key={item} onClick={()=>moveTo(item)}>{item===ARCHIVED?"Archive":item}</MenuItem>)}
                         <MenuItem onClick={goToEdit}>Edit</MenuItem>
                         <MenuItem onClick={handleAlertOpen}>Delete</MenuItem>
                     </Menu>
@@ -108,7 +116,7 @@ function TaskCard(props: TaskCardPropsI) {
                     <p className="task-card-span-1">due on <span className="task-card-date">{dueDate}</span></p>
                 </div>
             </div>
-            {completedDate && <p>Completed on <span className="task-card-date">{completedDate}</span></p>}
+            {props.class===DONE && <p>Completed on <span className="task-card-date">{completedDate}</span></p>}
             <p className="task-card-content">{content}</p>
         </div>
     )

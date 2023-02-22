@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
+import { Button } from "@mui/material";
 
 function Kanban() {
     const navigate = useNavigate();
@@ -7,7 +8,9 @@ function Kanban() {
     return (
         <div>
             <Navbar />
-            <button onClick={()=>navigate('/kanban/create-task')}>Add New Task</button>
+            <div className="operations-wrapper">
+                <Button onClick={()=>navigate('/kanban/create-task')}>Add New Task</Button>
+            </div>
             <Outlet></Outlet>
         </div>
     );

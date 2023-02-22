@@ -51,6 +51,11 @@ export interface UpdateTaskPayloadI {
     }
 }
 
+export interface LinkTabPropsI {
+    label?: string;
+    href?: string;
+}
+
 export function formatDateString(date: Date): string {
     return date.toISOString().split('T')[0];
 }

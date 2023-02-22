@@ -6,7 +6,10 @@ const usersAdapter = createEntityAdapter<UserI>();
 
 const initialState = usersAdapter.getInitialState({
     currentUser: "",
-    loginError: ""
+    loginError: {
+        type: "",
+        msg: ""
+    }
 });
 
 const usersSlice = createSlice({
@@ -16,9 +19,11 @@ const usersSlice = createSlice({
         loginAction: (state, action) => {
             const targetId = action.payload.userId;
             if(!state.ids.includes(targetId)) {
-                state.loginError = "Invalid user id"
+                state.loginError.type = "userId"
+                state.loginError.msg = "Invalid user id"
             } else if(state.entities[targetId]?.password !== action.payload.password) {
-                state.loginError = "Password is incorrect"
+                state.loginError.type = "password"
+                state.loginError.msg = "Password is incorrect"
             } else {
                 state.currentUser = targetId;
             }
@@ -28,7 +33,8 @@ const usersSlice = createSlice({
         },
         logoutAction: (state) => {
             state.currentUser = "";
-            state.loginError = "";
+            state.loginError.type = "";
+            state.loginError.msg = "";
         }
     }
 });
