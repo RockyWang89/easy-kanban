@@ -9,3 +9,6 @@
 - Mark the overdue tasks with different color of cards
 # Tech stack:
 HTML5, CSS3, TypeScript, React, Redux Toolkit, Redux-Persist, Material Design UI, React-Router, Flexbox and so on
+# Demo user ID:
+You can login with existing user IDs: u01, u02, u03, u04
+All passwords for the users are 1234
