@@ -10,6 +10,7 @@ function LinkTab(props: LinkTabPropsI) {
 
 function Navbar() {
     const [value, setValue] = useState(()=>{
+        //bind the sub-routes with navbar tabs respectively
         let initValue;
         switch(window.location.href.split('/')[5]) {
             case 'todo': 

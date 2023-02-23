@@ -18,6 +18,7 @@ const usersSlice = createSlice({
     reducers: {
         loginAction: (state, action) => {
             const targetId = action.payload.userId;
+            //Give the type and msg seperately to show the exact error on login page
             if(!state.ids.includes(targetId)) {
                 state.loginError.type = "userId"
                 state.loginError.msg = "Invalid user id"

@@ -22,8 +22,8 @@ function AppRouter() {
     return (
         <Routes>
             <Route path="/kanban" element={routeGuard('features/Home')}>
-                <Route path="create-task" element={routeGuard('features/kanban/CreateTaskForm')} />
-                <Route path="edit-task/:taskId" element={routeGuard('features/kanban/EditTaskForm')} />
+                <Route path="create-task" element={routeGuard('features/kanban/CreateTask')} />
+                <Route path="edit-task/:taskId" element={routeGuard('features/kanban/EditTask')} />
                 <Route path="" element={routeGuard('features/kanban/Kanban')}>
                     <Route path="todo" element={routeGuard('features/kanban/ToDo')} />
                     <Route path="doing" element={routeGuard('features/kanban/Doing')} />

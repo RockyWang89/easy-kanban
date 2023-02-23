@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
 import ErrorIcon from '@mui/icons-material/Error';
 
+//login page
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ function Login() {
     const currentUser = useSelector(getCurrentUser);
     const error = useSelector(getLoginError);
 
+    //if there's a valid current user in the state, go to the kanban page directly
     useEffect(()=>{
         if(currentUser) {
             navigate('/kanban');
@@ -39,19 +41,6 @@ function Login() {
     }
 
     return (
-        // <form>
-        //     {errorMsg && <span>{errorMsg}</span>}
-        //     <input type="text" value={userId} onChange={onUserIdChange}/>
-        //     <input type="password" value={password} onChange={onPasswordChange}/>
-        //     <button onClick={(e)=>{
-        //         e.preventDefault();
-        //         resetForm();
-        //     }}>Reset</button>
-        //     <button onClick={(e)=>{
-        //         e.preventDefault();
-        //         login();
-        //     }}>Login</button>
-        // </form>
         <div className="login-wrapper">
             <h1>EasyKanban</h1>
             <form>
@@ -65,7 +54,7 @@ function Login() {
                         onChange={onUserIdChange}
                         autoFocus
                         error={error.type==="userId"}
-                        helperText={error.type === "userId" && <span><ErrorIcon sx={{fontSize: "1.1em"}} fontSize="small"/> {error.msg}</span>}
+                        helperText={error.type === "userId" && <span><ErrorIcon sx={{fontSize: "1.1em"}}/> {error.msg}</span>}
                     />
                 </div>
                 <div>

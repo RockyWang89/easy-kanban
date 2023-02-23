@@ -33,6 +33,7 @@ const tasksSlice = createSlice({
         },
         changeStatusAction: (state, action: PayloadAction<ChangeTaskStatusPayloadI>) => {
             (state.entities[action.payload.id] as TaskI).status = action.payload.status;
+            //Put a completed date when the task is moved to completed class
             if(action.payload.status === DONE) {
                 (state.entities[action.payload.id] as TaskI).completedDate = formatDateString(new Date());
             }

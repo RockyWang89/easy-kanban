@@ -15,11 +15,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 
-
+//The TaskCard component is used for displaying the task items under task pages, such as todo, doing, done, archive.
 function TaskCard(props: TaskCardPropsI) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const statusList = [TODO, DOING, DONE, ARCHIVED];
+    const statusList = [TODO, DOING, DONE, ARCHIVED];  //the list is used for filter the current status class out and construct the action menu for task items
     const {id, title, content, owner, assignee} = props.task;
     const createDate = new Date(props.task.createDate).toLocaleDateString();
     const dueDate = new Date(props.task.dueDate).toLocaleDateString();
@@ -49,10 +49,12 @@ function TaskCard(props: TaskCardPropsI) {
         dispatch(changeStatusAction({id, status}));
     };
 
+    //go to edit specific task
     function goToEdit() {
         navigate(`/kanban/edit-task/${id}`);
     };
 
+    //delete specific task
     function deleteTask() {
         dispatch(deleteTaskAction(id));
     };
@@ -117,7 +119,7 @@ function TaskCard(props: TaskCardPropsI) {
                 </div>
             </div>
             {props.class===DONE && <p>Completed on <span className="task-card-date">{completedDate}</span></p>}
-            <p className="task-card-content">{content}</p>
+            <pre className="task-card-content">{content}</pre>
         </div>
     )
 }
